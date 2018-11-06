@@ -5,8 +5,8 @@ apply from: 'maven-release-aar.gradle'
 
 
 apply plugin: 'com.github.dcendents.android-maven'
-
 group='com.github.InternetED'
+
 android {
     compileSdkVersion 28
 
