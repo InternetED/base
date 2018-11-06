@@ -4,7 +4,7 @@ apply plugin: 'maven'
 // 2.maven-信息
 ext {// ext is a gradle closure allowing the declaration of global properties
 //    com.internet.boy.base
-    PUBLISH_GROUP_ID = 'com.internet.boy'
+    PUBLISH_GROUP_ID = 'com.github.InternetED'
     PUBLISH_ARTIFACT_ID = 'androidBase'
 //    PUBLISH_VERSION = android.defaultConfig.versionName
     PUBLISH_VERSION = '1.0.0'
