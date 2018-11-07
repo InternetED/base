@@ -1,4 +1,4 @@
-  package com.internet.boy.androidbase.kutils
+package com.internet.boy.androidbase.kutils
 
 import android.annotation.SuppressLint
 import java.text.DateFormat
@@ -94,7 +94,8 @@ val currentTimeMills: Long get() = System.currentTimeMillis()
 /**
  * 當前時間格式化成指定格式的String類型
  */
-fun currentTimeString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String = currentTimeMills.format2DateString(format)
+fun currentTimeString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
+    currentTimeMills.format2DateString(format)
 
 /**
  * 當前時間的Date類型
@@ -128,7 +129,8 @@ fun Long.format2DateString(formatPattern: String): String = Date(this).format2St
  *
  * @param format
  */
-fun Long.format2DateString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String = Date(this).format2String(format)
+fun Long.format2DateString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
+    Date(this).format2String(format)
 
 /**
  * 解析String類型的日期為Long類型
@@ -167,7 +169,7 @@ fun parseString2Date(time: String, format: DateFormat = DefaultDateFormat.DEFAUL
  * @param unit 返回值的時間單位 默認值：天
  */
 fun Calendar.getTimeSpan(otherCalendar: Calendar = Calendar.getInstance(), unit: TimeUnit): Long =
-        calculateTimeSpan(Math.abs(this.timeInMillis - otherCalendar.timeInMillis), unit)
+    calculateTimeSpan(Math.abs(this.timeInMillis - otherCalendar.timeInMillis), unit)
 
 /**
  * 获取两个日期的时间差
@@ -176,7 +178,7 @@ fun Calendar.getTimeSpan(otherCalendar: Calendar = Calendar.getInstance(), unit:
  * @param unit       返回值的时间单位  默认值：天
  */
 fun Date.getTimeSpan(otherDate: Date = Date(), unit: TimeUnit = TimeUnit.DAYS): Long =
-        calculateTimeSpan(Math.abs(this.time - otherDate.time), unit)
+    calculateTimeSpan(Math.abs(this.time - otherDate.time), unit)
 
 /**
  * 获取两个日期的时间差
@@ -185,7 +187,7 @@ fun Date.getTimeSpan(otherDate: Date = Date(), unit: TimeUnit = TimeUnit.DAYS): 
  * @param unit        返回值的时间单位  默认值：天
  */
 fun Long.getTimeSpan(otherMills: Long = currentTimeMills, unit: TimeUnit = TimeUnit.DAYS): Long =
-        calculateTimeSpan(Math.abs(this - otherMills), unit)
+    calculateTimeSpan(Math.abs(this - otherMills), unit)
 
 /**
  * 获取两个日期的时间差
@@ -196,13 +198,17 @@ fun Long.getTimeSpan(otherMills: Long = currentTimeMills, unit: TimeUnit = TimeU
  * @param format  默认值："yyyy-MM-dd HH:mm:ss"格式的format
  * @param unit    返回值的时间单位  默认值：天
  */
-fun getTimeSpan(time1: String = currentTimeString(), time2: String,
-                format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get(),
-                unit: TimeUnit = TimeUnit.DAYS): Long =
-        calculateTimeSpan(Math.abs(
+fun getTimeSpan(
+    time1: String = currentTimeString(), time2: String,
+    format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get(),
+    unit: TimeUnit = TimeUnit.DAYS
+): Long =
+    calculateTimeSpan(
+        Math.abs(
             parseDateString2Mills(time1, format) -
-                parseDateString2Mills(time2, format)
-        ), unit)
+                    parseDateString2Mills(time2, format)
+        ), unit
+    )
 
 /**
  * 计算时间间隔
@@ -233,7 +239,8 @@ fun calculateTimeSpan(diffMills: Long, unit: TimeUnit): Long = when (unit) {
  * 如果是同一年，显示 09-01 15:32
  * 其余显示，2017-09-01
  */
-fun formatAgoStyleForWeibo(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String = parseDateString2Mills(time, format).formatAgoStyleForWeibo()
+fun formatAgoStyleForWeibo(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
+    parseDateString2Mills(time, format).formatAgoStyleForWeibo()
 
 /**
  * 将时间戳转换成 xx小时前 的样式（同微信）
@@ -249,7 +256,8 @@ fun formatAgoStyleForWeibo(time: String, format: DateFormat = DefaultDateFormat.
  * 如果在两年内，显示xx年前
  * 其余显示，2017-09-01
  */
-fun formatAgoStyleForWeChat(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String = parseDateString2Mills(time, format).formatAgoStyleForWeChat()
+fun formatAgoStyleForWeChat(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
+    parseDateString2Mills(time, format).formatAgoStyleForWeChat()
 
 /**
  * 将时间戳转换成 xx小时前 的样式（同微博）
@@ -335,7 +343,10 @@ fun Long.formatAgoStyleForWeChat(): String {
         span >= TimeUnit.DAYS.toMillis(1) && span <= TimeUnit.DAYS.toMillis(1) * 2 -> "昨天"
         span <= TimeUnit.DAYS.toMillis(1) * 30 -> String.format("%d天前", span / TimeUnit.DAYS.toMillis(1))
         span <= TimeUnit.DAYS.toMillis(1) * 30 * 12 -> String.format("%d月前", span / (TimeUnit.DAYS.toMillis(1) * 30))
-        span <= TimeUnit.DAYS.toMillis(1) * 30 * 12 * 2 -> String.format("%d年前", span / (TimeUnit.DAYS.toMillis(1) * 30 * 12))
+        span <= TimeUnit.DAYS.toMillis(1) * 30 * 12 * 2 -> String.format(
+            "%d年前",
+            span / (TimeUnit.DAYS.toMillis(1) * 30 * 12)
+        )
         else -> String.format("%tF", this)
     }
 }
@@ -374,8 +385,8 @@ fun Date.betweenDates(minCal: Calendar, maxCal: Calendar): Boolean = betweenDate
  * @param maxDate 最大日期
  */
 fun Date.betweenDates(minDate: Date, maxDate: Date): Boolean =
-        (this == minDate || this.after(minDate)) // >= minCal
-                && this.before(maxDate) // && < maxCal
+    (this == minDate || this.after(minDate)) // >= minCal
+            && this.before(maxDate) // && < maxCal
 
 /**
  * 将日期时间设置为0点，00:00:00:0

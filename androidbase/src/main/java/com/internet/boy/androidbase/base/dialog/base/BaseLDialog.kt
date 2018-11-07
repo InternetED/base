@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -14,7 +15,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
-import com.internet.boy.androidbase.kutils.logd
 import com.internet.boy.androidbase.R
 import kotlinx.android.parcel.Parcelize
 
@@ -95,7 +95,7 @@ abstract class BaseLDialog<T : BaseLDialog<T>> : androidx.fragment.app.DialogFra
             editText.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
                 override fun onGlobalLayout() {
                     val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-                            ?: return
+                        ?: return
                     if (imm.showSoftInput(editText, 0)) {
                         editText.viewTreeObserver.removeOnGlobalLayoutListener(this)
                     }
@@ -131,7 +131,8 @@ abstract class BaseLDialog<T : BaseLDialog<T>> : androidx.fragment.app.DialogFra
             when {
                 baseParams.widthScale > 0f -> {
                     if ((this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && baseParams.keepWidthScale)
-                            || this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                        || this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+                    ) {
                         //横屏并且保持比例 或者 竖屏
                         params.width = (point.x * baseParams.widthScale).toInt()
                     }
@@ -143,7 +144,8 @@ abstract class BaseLDialog<T : BaseLDialog<T>> : androidx.fragment.app.DialogFra
             when {
                 baseParams.heightScale > 0f -> {
                     if ((this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && baseParams.keepHeightScale)
-                            || this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                        || this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+                    ) {
                         //横屏并且保持比例 或者 竖屏
                         params.height = (point.y * baseParams.heightScale).toInt()
                     }
@@ -291,10 +293,9 @@ abstract class BaseLDialog<T : BaseLDialog<T>> : androidx.fragment.app.DialogFra
 //            應調用 commitAllowingStateLoss 即可忽略 mStateSaved
         } catch (ignore: IllegalStateException) {
 
-            logd(ignore.toString(), "錯誤訊息 DialogFragment 本身的錯誤1")
+            Log.d("$ignore", "錯誤訊息 DialogFragment 本身的錯誤1")
         } catch (ignore: Exception) {
-
-            logd(ignore.toString(), "錯誤訊息 DialogFragment 本身的錯誤2")
+            Log.d("$ignore", "錯誤訊息 DialogFragment 本身的錯誤2")
         }
     }
 
@@ -312,8 +313,10 @@ abstract class BaseLDialog<T : BaseLDialog<T>> : androidx.fragment.app.DialogFra
 
     }
 
-    abstract class UnParcelableParams(var fragmentManager: androidx.fragment.app.FragmentManager? = null,
-                                      var view: View? = null)
+    abstract class UnParcelableParams(
+        var fragmentManager: androidx.fragment.app.FragmentManager? = null,
+        var view: View? = null
+    )
 
     @Parcelize
     class BaseDialogParams(

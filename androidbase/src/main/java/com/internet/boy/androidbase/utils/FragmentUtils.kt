@@ -1,7 +1,11 @@
 package com.internet.boy.androidbase.utils
 
-import com.internet.boy.androidbase.base.BaseFragment
-import boy.internet.lin.curFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.internet.boy.androidbase.curFragment
+import com.internet.boy.androidbase.kutils.inTransaction
 
 /**
  *@date: 2018/9/8 : 下午 10:12
@@ -15,10 +19,10 @@ import boy.internet.lin.curFragment
 //    fragmentTransaction.commit()
 //}
 
-inline fun androidx.fragment.app.FragmentManager.inTransaction(block: androidx.fragment.app.FragmentTransaction.() -> androidx.fragment.app.FragmentTransaction) {
+inline fun FragmentManager.inTransaction(block: FragmentTransaction.() -> FragmentTransaction) {
     beginTransaction()
-            .block()
-            .commit()
+        .block()
+        .commit()
 }
 
 /**
@@ -26,7 +30,7 @@ inline fun androidx.fragment.app.FragmentManager.inTransaction(block: androidx.f
  * @param fragments Fragment 加入 -> supportFragmentManager
  *
  * */
-fun androidx.fragment.app.FragmentActivity.initFragment(frameId: Int, fragments: ArrayList<BaseFragment>) {
+fun FragmentActivity.initFragment(frameId: Int, fragments: ArrayList<Fragment>) {
     supportFragmentManager.inTransaction {
         fragments.forEach {
             this.add(frameId, it)
@@ -36,7 +40,7 @@ fun androidx.fragment.app.FragmentActivity.initFragment(frameId: Int, fragments:
     }
 }
 
-fun androidx.fragment.app.FragmentActivity.showFragment(nextFragment: androidx.fragment.app.Fragment, toBackStack: Boolean = false) {
+fun FragmentActivity.showFragment(nextFragment: Fragment, toBackStack: Boolean = false) {
     supportFragmentManager.inTransaction {
         //        hide(curFragment)
         curFragment?.let { hide(it) }
@@ -49,14 +53,14 @@ fun androidx.fragment.app.FragmentActivity.showFragment(nextFragment: androidx.f
 }
 
 
-fun androidx.fragment.app.FragmentActivity.hideFragment(curFragment: androidx.fragment.app.Fragment) {
+fun FragmentActivity.hideFragment(curFragment: Fragment) {
     supportFragmentManager.inTransaction {
         hide(curFragment)
         this
     }
 }
 
-fun androidx.fragment.app.FragmentActivity.cleanFragment(fff: List<androidx.fragment.app.Fragment>) {
+fun FragmentActivity.cleanFragment(fff: List<Fragment>) {
     supportFragmentManager.inTransaction {
         fff.forEach {
             this.remove(it)
@@ -66,20 +70,20 @@ fun androidx.fragment.app.FragmentActivity.cleanFragment(fff: List<androidx.frag
 }
 
 
-fun androidx.fragment.app.FragmentActivity.addFragment(fragment: androidx.fragment.app.Fragment, frameId: Int) {
+fun FragmentActivity.addFragment(fragment: Fragment, frameId: Int) {
     supportFragmentManager.inTransaction {
         add(frameId, fragment)
         hide(fragment)
     }
 }
 
-fun androidx.fragment.app.FragmentActivity.replaceFragment(fragment: androidx.fragment.app.Fragment, frameId: Int, toBackStack: Boolean = false) {
+fun FragmentActivity.replaceFragment(fragment: Fragment, frameId: Int, toBackStack: Boolean = false) {
     supportFragmentManager.inTransaction {
         replace(frameId, fragment)
-                .also {
-                    if (toBackStack) {
-                        it.addToBackStack(null)
-                    }
+            .also {
+                if (toBackStack) {
+                    it.addToBackStack(null)
                 }
+            }
     }
 }

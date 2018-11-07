@@ -1,6 +1,6 @@
 package com.internet.boy.androidbase.kutils
 
-import boy.internet.lin.kutils.log.ZLog
+import com.internet.boy.androidbase.kutils.log.ZLog
 
 /**
  * Created by zyyoona7 on 2017/8/24.

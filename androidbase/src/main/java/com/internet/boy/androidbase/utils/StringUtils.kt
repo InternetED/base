@@ -1,4 +1,4 @@
-package boy.internet.lin.utils
+package com.internet.boy.androidbase.utils
 
 
 /**

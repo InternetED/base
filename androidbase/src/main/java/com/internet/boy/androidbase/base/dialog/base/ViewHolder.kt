@@ -3,6 +3,7 @@ package com.internet.boy.androidbase.base.dialog.base
 import android.util.SparseArray
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.*
 
 /**
  * Date 2018/6/29
@@ -29,35 +30,43 @@ class ViewHolder private constructor(private val convertView: View) {
         }
     }
 
-}
+    fun setText(@IdRes viewId: Int, value: CharSequence): ViewHolder {
+        val view = getView<TextView>(viewId)
+        view.text = value
+        return this
+    }
 
-fun ViewHolder.setText(viewId: Int, textId: Int) {
-    val textView = getView<TextView>(viewId)
-    textView.setText(textId)
-}
-
-fun ViewHolder.setText(viewId: Int, text: CharSequence) {
-    val textView = getView<TextView>(viewId)
-    textView.text = text
-}
-
-fun ViewHolder.setTextColor(viewId: Int, colorId: Int) {
-    val textView = getView<TextView>(viewId)
-    textView.setTextColor(colorId)
-}
-
-fun ViewHolder.setOnClickListener(viewId: Int, clickListener: View.OnClickListener?) {
-    val view = getView<View>(viewId)
-    view.setOnClickListener(clickListener)
-}
+    fun setText(@IdRes viewId: Int, @StringRes strId: Int): ViewHolder {
+        val view = getView<TextView>(viewId)
+        view.setText(strId)
+        return this
+    }
 
 
-fun ViewHolder.setBackgroundResource(viewId: Int, resId: Int) {
-    val view = getView<View>(viewId)
-    view.setBackgroundResource(resId)
-}
+    fun setTextColor(@IdRes viewId: Int, @ColorInt colorId: Int): ViewHolder {
+        val textView = getView<TextView>(viewId)
+        textView.setTextColor(colorId)
+        return this
+    }
 
-fun ViewHolder.setBackgroundColor(viewId: Int, colorId: Int) {
-    val view = getView<View>(viewId)
-    view.setBackgroundColor(colorId)
+
+    fun setOnClickListener(@IdRes viewId: Int, @Nullable clickListener: View.OnClickListener?): ViewHolder {
+        val view = getView<View>(viewId)
+        view.setOnClickListener(clickListener)
+        return this
+    }
+
+
+    fun setBackgroundResource(@IdRes viewId: Int, @DrawableRes resId: Int): ViewHolder {
+        val view = getView<View>(viewId)
+        view.setBackgroundResource(resId)
+        return this
+    }
+
+    fun setBackgroundColor(@IdRes viewId: Int, @ColorInt colorId: Int): ViewHolder {
+        val view = getView<View>(viewId)
+        view.setBackgroundColor(colorId)
+        return this
+    }
+
 }

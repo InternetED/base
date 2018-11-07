@@ -1,4 +1,4 @@
-package boy.internet.lin
+package com.internet.boy.androidbase
 
 import android.content.Context
 import android.content.Intent

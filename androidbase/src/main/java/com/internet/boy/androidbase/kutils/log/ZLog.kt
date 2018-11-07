@@ -1,4 +1,4 @@
-package boy.internet.lin.kutils.log
+package com.internet.boy.androidbase.kutils.log
 
 import android.util.Log
 import org.json.JSONArray

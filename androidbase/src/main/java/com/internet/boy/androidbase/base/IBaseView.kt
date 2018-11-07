@@ -1,10 +1,9 @@
 package com.internet.boy.androidbase.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.annotation.NonNull
-import androidx.annotation.Nullable
-import android.view.View
 
 /**
  *@date: 2018/9/8 : 下午 03:46

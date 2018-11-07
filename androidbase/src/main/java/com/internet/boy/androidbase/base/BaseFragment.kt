@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import boy.internet.lin.curFragment
+import com.internet.boy.androidbase.curFragment
 import com.internet.boy.androidbase.kutils.logd
 
 
@@ -23,9 +23,18 @@ abstract class BaseFragment : Fragment(), IBaseView {
     lateinit var mContext: Context
     lateinit var mActivity: AppCompatActivity
 
+
+    /**
+     * 上次點擊時間
+     */
     private var lastClick: Long = 0
 
-    private val isFastClick: Boolean
+    /**
+     * 判断是否快速點擊
+     *
+     * @return `true`: 是   `false`: 否
+     */
+    protected val isFastClick: Boolean
         get() {
             val now = System.currentTimeMillis()
             if (now - lastClick >= 200) {
@@ -34,6 +43,7 @@ abstract class BaseFragment : Fragment(), IBaseView {
             }
             return true
         }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.internet.boy.androidbase.base.BaseFragment
 
 /**
  *@date: 2018/9/8 : 下午 03:46

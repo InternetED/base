@@ -2,9 +2,9 @@ package com.internet.boy.androidbase.base
 
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  *@date: 2018/9/8 : 下午 03:46
@@ -25,7 +25,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
      *
      * @return `true`: 是   `false`: 否
      */
-    private val isFastClick: Boolean
+    protected val isFastClick: Boolean
         get() {
             val now = System.currentTimeMillis()
             if (now - lastClick >= 200) {
