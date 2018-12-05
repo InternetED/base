@@ -31,13 +31,17 @@ android {
     androidExtensions {
         experimental = true
     }
+    dataBinding {
+        enabled = true
+    }
+
 
 
 }
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api 'androidx.appcompat:appcompat:1.0.1'
+    api 'androidx.appcompat:appcompat:1.0.2'
     api 'com.google.android.material:material:1.0.0'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     //Kotlin 的擴展庫

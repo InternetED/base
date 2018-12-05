@@ -1,4 +1,4 @@
-package com.internet.boy.androidbase.base
+package com.internet.boy.androidbase.base.common
 
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.internet.boy.androidbase.curFragment
+import com.internet.boy.androidbase.base.IBaseView
 import com.internet.boy.androidbase.kutils.logd
 
 
@@ -24,25 +24,13 @@ abstract class BaseFragment : Fragment(), IBaseView {
     lateinit var mActivity: AppCompatActivity
 
 
-    /**
-     * 上次點擊時間
-     */
-    private var lastClick: Long = 0
+    // 初始化最後點擊時間
+    override var lastClickTime: Long = 0
 
-    /**
-     * 判断是否快速點擊
-     *
-     * @return `true`: 是   `false`: 否
-     */
-    protected val isFastClick: Boolean
-        get() {
-            val now = System.currentTimeMillis()
-            if (now - lastClick >= 200) {
-                lastClick = now
-                return false
-            }
-            return true
-        }
+    // 設定間距時間
+    override var intervalsTime: Long = 200
+
+    override val bundles: Bundle by lazy { arguments ?: Bundle() }
 
 
     override fun onAttach(context: Context) {
@@ -80,15 +68,18 @@ abstract class BaseFragment : Fragment(), IBaseView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(TAG, "onCreateView: ")
-        return inflater.inflate(bindLayout(), null, false)
+        return inflater.inflate(layoutId, null, false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d(TAG, "onViewCreated: ")
         super.onViewCreated(view, savedInstanceState)
-        val bundle = arguments
-        initData(bundle)
+
+        arguments?.let {
+            //            bundle = it
+        }
+
         initView(savedInstanceState)
     }
 
@@ -96,7 +87,6 @@ abstract class BaseFragment : Fragment(), IBaseView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         Log.d(TAG, "onActivityCreated: ")
         super.onActivityCreated(savedInstanceState)
-        doBusiness()
     }
 
     override fun onDestroyView() {
@@ -105,12 +95,6 @@ abstract class BaseFragment : Fragment(), IBaseView {
         super.onDestroyView()
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (!hidden) {
-            curFragment = this
-        }
-    }
 
     override fun onDestroy() {
         Log.d(TAG, "onDestroy: ")
@@ -125,10 +109,6 @@ abstract class BaseFragment : Fragment(), IBaseView {
         Log.d(TAG, "onSaveInstanceState: ")
         super.onSaveInstanceState(outState)
         outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden)
-    }
-
-    override fun onClick(view: View) {
-        if (!isFastClick) onWidgetClick(view)
     }
 
 

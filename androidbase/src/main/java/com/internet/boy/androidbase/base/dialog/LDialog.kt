@@ -1,10 +1,10 @@
 package com.internet.boy.androidbase.base.dialog
 
 
-import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
 import android.view.View
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.internet.boy.androidbase.base.dialog.base.BaseLDialog
 import com.internet.boy.androidbase.base.dialog.base.ViewHandlerListener

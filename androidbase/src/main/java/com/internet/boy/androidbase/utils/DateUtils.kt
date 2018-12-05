@@ -3,7 +3,16 @@ package com.internet.boy.androidbase.utils
 import java.util.*
 
 
-fun Long.timeToString(): String {
+
+
+/**
+ *@date: 2018/12/1 - 下午 01:11
+ *@author: Ed
+ *@email: salahayo3192@gmail.com
+ **/
+
+
+fun Long.timeFormat(): String {
 //            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
 
 

@@ -1,6 +1,14 @@
 package com.internet.boy.androidbase.utils
 
 
+
+/**
+ *@date: 2018/11/15 - 下午 05:51
+ *@author: Ed
+ *@email: salahayo3192@gmail.com
+ **/
+
+
 /**
  * 將文本中的半形字符，轉換成全形字符
  *

@@ -1,9 +1,7 @@
-package com.internet.boy.androidbase.base
+package com.internet.boy.androidbase.base.common
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 
 /**
  *@date: 2018/9/8 : 下午 03:46
@@ -21,16 +19,10 @@ abstract class BaseLazyFragment : BaseFragment() {
     var isPrepared = false
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(bindLayout(), null, false)
-    }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (isPrepared) return
 
         initView(savedInstanceState)
-        doBusiness()
         isPrepared = true
 
     }
@@ -52,7 +44,6 @@ abstract class BaseLazyFragment : BaseFragment() {
         super.setUserVisibleHint(isVisibleToUser)
 
         if (isVisibleToUser && !isDataLoaded) {
-            initData(arguments)
 
             doLazyBusiness()
         }

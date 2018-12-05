@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 class CustomGridLayoutManager(context: Context, spanCount: Int) : GridLayoutManager(context, spanCount) {
 
 
+
+
+
     override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) {
+
         try {
             super.onLayoutChildren(recycler, state)
         } catch (indexOutOf: IndexOutOfBoundsException) {
             Log.d("$indexOutOf", "GridLayoutManager出現錯誤")
-
         } catch (e: Exception) {
             Log.d("$e", "GridLayoutManager出現錯誤")
             // 為了解決
@@ -21,6 +24,8 @@ class CustomGridLayoutManager(context: Context, spanCount: Int) : GridLayoutMana
         }
 
     }
+
+
 
 }
 
