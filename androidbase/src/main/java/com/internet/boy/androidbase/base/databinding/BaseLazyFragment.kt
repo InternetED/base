@@ -24,8 +24,7 @@ abstract class BaseLazyFragment<VB : ViewDataBinding> : BaseFragment<VB>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (isPrepared) return
-
-        super.onViewCreated(view, savedInstanceState)
+        initView(savedInstanceState)
         isPrepared = true
     }
 

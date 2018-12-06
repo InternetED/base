@@ -15,6 +15,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.internet.boy.androidbase.R
 import kotlinx.android.parcel.Parcelize
 
@@ -24,8 +26,7 @@ import kotlinx.android.parcel.Parcelize
  * Date 2018/6/26
  * @author limuyang
  */
-@Suppress("UNCHECKED_CAST")
-abstract class BaseLDialog<T : BaseLDialog<T>> : androidx.fragment.app.DialogFragment() {
+abstract class BaseLDialog<T : BaseLDialog<T>> : DialogFragment() {
 
     protected var baseParams: BaseDialogParams
 
@@ -33,6 +34,8 @@ abstract class BaseLDialog<T : BaseLDialog<T>> : androidx.fragment.app.DialogFra
 
     private var onDialogDismissListener: OnDialogDismissListener? = null
 
+
+    val sss by lazy { context!! }
     protected lateinit var mContext: Context
 
     init {
@@ -314,7 +317,7 @@ abstract class BaseLDialog<T : BaseLDialog<T>> : androidx.fragment.app.DialogFra
     }
 
     abstract class UnParcelableParams(
-        var fragmentManager: androidx.fragment.app.FragmentManager? = null,
+        var fragmentManager: FragmentManager? = null,
         var view: View? = null
     )
 

@@ -80,16 +80,22 @@ Date转换成天数
 /**
  * 單例默認的日期格式化
  */
+@SuppressLint("SimpleDateFormat")
 internal object DefaultDateFormat {
 
     private const val DEFAULT_DATE_STR = "yyyy-MM-dd HH:mm:ss"
-    val DEFAULT_FORMAT = ThreadLocal<SimpleDateFormat>().apply { set(SimpleDateFormat(DEFAULT_DATE_STR)) }
+
+    val DEFAULT_FORMAT =
+        ThreadLocal<SimpleDateFormat>().apply { set(SimpleDateFormat(DEFAULT_DATE_STR)) }
+
+
 }
 
 /**
  * 當前時間毫秒值
  */
-val currentTimeMills: Long get() = System.currentTimeMillis()
+val currentTimeMills: Long
+    get() = System.currentTimeMillis()
 
 /**
  * 當前時間格式化成指定格式的String類型
@@ -100,7 +106,8 @@ fun currentTimeString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get(
 /**
  * 當前時間的Date類型
  */
-val currentDate: Date get() = Date()
+val currentDate: Date
+    get() = Date()
 
 /**
  * Date類型格式化成指定格式的String類型

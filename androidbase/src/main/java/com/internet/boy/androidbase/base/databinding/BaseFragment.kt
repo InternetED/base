@@ -18,9 +18,10 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment(), IBaseView {
 
     private lateinit var mRootView: View
 
-    protected lateinit var mContext: Context
-    protected lateinit var mActivity: AppCompatActivity
 
+    protected lateinit var mContext: Context
+
+    protected val mActivity by lazy { mContext as AppCompatActivity }
 
     // 初始化最後點擊時間
     override var lastClickTime: Long = 0
@@ -32,8 +33,6 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment(), IBaseView {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
-
-        mActivity = context as AppCompatActivity
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,19 +58,12 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment(), IBaseView {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        LayoutInflater.from(context).inflate(layoutId, container, false).also { mRootView = it }
 
-        mRootView = LayoutInflater.from(context).inflate(layoutId, container, false)
-
-
-        return mRootView
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         initBinding(view)
 

@@ -12,11 +12,10 @@ abstract class BaseLazyFragment : BaseFragment() {
 
     var isDataLoaded: Boolean = false
 
-
     //是否可见
-    var isVisble = false
+    var isVisble: Boolean = false
     // 是否初始化完成
-    var isPrepared = false
+    var isPrepared: Boolean = false
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,9 +49,4 @@ abstract class BaseLazyFragment : BaseFragment() {
 
     }
 
-
-    companion object {
-
-        private const val TAG = "BaseLazyFragment"
-    }
 }
