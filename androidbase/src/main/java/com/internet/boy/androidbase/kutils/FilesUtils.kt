@@ -46,7 +46,7 @@ val isExternalStorageWritable: Boolean
  * 應用外置文件目錄("/Android/data/<包名>/files")
  */
 val Context.externalFileDirPath: String
-    get() = getExternalFilesDir("").absolutePath
+    get() = getExternalFilesDir("")!!.absolutePath
 
 /**
  * 獲取應用外置緩存目錄
@@ -54,7 +54,7 @@ val Context.externalFileDirPath: String
  * 應用外置緩存目錄("/Android/data/<包名>/cache")
  */
 val Context.externalCacheDirPath: String
-    get() = externalCacheDir.absolutePath
+    get() = externalCacheDir!!.absolutePath
 
 
 /*
