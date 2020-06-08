@@ -82,85 +82,96 @@ Date转换成天数
  */
 internal object DefaultDateFormat {
 
-    private const val DEFAULT_DATE_STR = "yyyy-MM-dd HH:mm:ss"
-    val DEFAULT_FORMAT = ThreadLocal<SimpleDateFormat>().apply { set(SimpleDateFormat(DEFAULT_DATE_STR)) }
+//    private const val DEFAULT_DATE_STR = "yyyy-MM-dd HH:mm:ss"
+
+//    @SuppressLint("SimpleDateFormat")
+//    val DEFAULT_FORMAT =
+//        ThreadLocal<SimpleDateFormat>().apply { set(SimpleDateFormat.getInstance()) }
 }
 
 /**
  * 當前時間毫秒值
  */
 val currentTimeMills: Long get() = System.currentTimeMillis()
-
-/**
- * 當前時間格式化成指定格式的String類型
- */
-fun currentTimeString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
-    currentTimeMills.format2DateString(format)
+//
+///**
+// * 當前時間格式化成指定格式的String類型
+// */
+//fun currentTimeString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
+//    currentTimeMills.format2DateString(format)
 
 /**
  * 當前時間的Date類型
  */
 val currentDate: Date get() = Date()
 
-/**
- * Date類型格式化成指定格式的String類型
- *
- * @param format
- */
-fun Date.format2String(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String = format.format(this)
+///**
+// * Date類型格式化成指定格式的String類型
+// *
+// * @param format
+// */
+//fun Date.format2String(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
+//    format.format(this)
 
-/**
- * Date類型格式化成指定格式的String類型
- *
- * @param formatPattern
- */
-@SuppressLint("SimpleDateFormat")
-fun Date.format2String(formatPattern: String): String = format2String(SimpleDateFormat(formatPattern))
+///**
+// * Date類型格式化成指定格式的String類型
+// *
+// * @param formatPattern
+// */
+//@SuppressLint("SimpleDateFormat")
+//fun Date.format2String(formatPattern: String): String =
+//    format2String(SimpleDateFormat(formatPattern))
 
-/**
- * Long類型格式化成指定格式的String類型的日期
- *
- * @param formatPattern
- */
-fun Long.format2DateString(formatPattern: String): String = Date(this).format2String(formatPattern)
+///**
+// * Long類型格式化成指定格式的String類型的日期
+// *
+// * @param formatPattern
+// */
+//fun Long.format2DateString(formatPattern: String): String = Date(this).format2String(formatPattern)
 
-/**
- * Long類型格式化成指定格式的String類型的日期
- *
- * @param format
- */
-fun Long.format2DateString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
-    Date(this).format2String(format)
+///**
+// * Long類型格式化成指定格式的String類型的日期
+// *
+// * @param format
+// */
+//fun Long.format2DateString(format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
+//    Date(this).format2String(format)
 
-/**
- * 解析String類型的日期為Long類型
- *
- * @param time
- * @param format
- */
-fun parseDateString2Mills(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): Long {
-    return try {
-        format.parse(time).time
-    } catch (e: ParseException) {
-        e.printStackTrace()
-        -1L
-    }
-}
+///**
+// * 解析String類型的日期為Long類型
+// *
+// * @param time
+// * @param format
+// */
+//fun parseDateString2Mills(
+//    time: String,
+//    format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()
+//): Long {
+//    return try {
+//        format.parse(time).time
+//    } catch (e: ParseException) {
+//        e.printStackTrace()
+//        -1L
+//    }
+//}
 
-/**
- * 解析String類型的日期為Date類型
- *
- * @param time
- * @param format
- */
-fun parseString2Date(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): Date {
-    return try {
-        format.parse(time)
-    } catch (e: ParseException) {
-        e.printStackTrace()
-        Date()
-    }
-}
+///**
+// * 解析String類型的日期為Date類型
+// *
+// * @param time
+// * @param format
+// */
+//fun parseString2Date(
+//    time: String,
+//    format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()
+//): Date {
+//    return try {
+//        format.parse(time)
+//    } catch (e: ParseException) {
+//        e.printStackTrace()
+//        Date()
+//    }
+//}
 
 /**
  * 獲取兩個日期的時間差
@@ -189,26 +200,26 @@ fun Date.getTimeSpan(otherDate: Date = Date(), unit: TimeUnit = TimeUnit.DAYS): 
 fun Long.getTimeSpan(otherMills: Long = currentTimeMills, unit: TimeUnit = TimeUnit.DAYS): Long =
     calculateTimeSpan(Math.abs(this - otherMills), unit)
 
-/**
- * 获取两个日期的时间差
- * （如果使用当前日期的默认值做比较，DateFormat必须是默认类型，否则需要全部替换掉默认参数）
- *
- * @param time1   默认值：当前日期
- * @param time2
- * @param format  默认值："yyyy-MM-dd HH:mm:ss"格式的format
- * @param unit    返回值的时间单位  默认值：天
- */
-fun getTimeSpan(
-    time1: String = currentTimeString(), time2: String,
-    format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get(),
-    unit: TimeUnit = TimeUnit.DAYS
-): Long =
-    calculateTimeSpan(
-        Math.abs(
-            parseDateString2Mills(time1, format) -
-                    parseDateString2Mills(time2, format)
-        ), unit
-    )
+///**
+// * 获取两个日期的时间差
+// * （如果使用当前日期的默认值做比较，DateFormat必须是默认类型，否则需要全部替换掉默认参数）
+// *
+// * @param time1   默认值：当前日期
+// * @param time2
+// * @param format  默认值："yyyy-MM-dd HH:mm:ss"格式的format
+// * @param unit    返回值的时间单位  默认值：天
+// */
+//fun getTimeSpan(
+//    time1: String = currentTimeString(), time2: String,
+//    format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get(),
+//    unit: TimeUnit = TimeUnit.DAYS
+//): Long =
+//    calculateTimeSpan(
+//        Math.abs(
+//            parseDateString2Mills(time1, format) -
+//                    parseDateString2Mills(time2, format)
+//        ), unit
+//    )
 
 /**
  * 计算时间间隔
@@ -226,38 +237,44 @@ fun calculateTimeSpan(diffMills: Long, unit: TimeUnit): Long = when (unit) {
     else -> TimeUnit.MILLISECONDS.toDays(diffMills)
 }
 
-/**
- * 将时间戳转换成 xx小时前 的样式（同微博）
- *
- * @return
- *
- * 如果小于1秒钟内，显示刚刚
- * 如果在1分钟内，显示xx秒前
- * 如果在1小时内，显示xx分钟前
- * 如果在1小时外的今天内，显示今天15:32
- * 如果是昨天的，显示昨天15:32
- * 如果是同一年，显示 09-01 15:32
- * 其余显示，2017-09-01
- */
-fun formatAgoStyleForWeibo(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
-    parseDateString2Mills(time, format).formatAgoStyleForWeibo()
+///**
+// * 将时间戳转换成 xx小时前 的样式（同微博）
+// *
+// * @return
+// *
+// * 如果小于1秒钟内，显示刚刚
+// * 如果在1分钟内，显示xx秒前
+// * 如果在1小时内，显示xx分钟前
+// * 如果在1小时外的今天内，显示今天15:32
+// * 如果是昨天的，显示昨天15:32
+// * 如果是同一年，显示 09-01 15:32
+// * 其余显示，2017-09-01
+// */
+//fun formatAgoStyleForWeibo(
+//    time: String,
+//    format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()
+//): String =
+//    parseDateString2Mills(time, format).formatAgoStyleForWeibo()
 
-/**
- * 将时间戳转换成 xx小时前 的样式（同微信）
- *
- * @return
- *
- * 如果小于1秒钟内，显示刚刚
- * 如果在1分钟内，显示xx秒前
- * 如果在1小时内，显示xx分钟前
- * 如果是昨天，显示昨天
- * 如果在一个月内，显示xx天前
- * 如果在一年内，显示xx月前
- * 如果在两年内，显示xx年前
- * 其余显示，2017-09-01
- */
-fun formatAgoStyleForWeChat(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): String =
-    parseDateString2Mills(time, format).formatAgoStyleForWeChat()
+///**
+// * 将时间戳转换成 xx小时前 的样式（同微信）
+// *
+// * @return
+// *
+// * 如果小于1秒钟内，显示刚刚
+// * 如果在1分钟内，显示xx秒前
+// * 如果在1小时内，显示xx分钟前
+// * 如果是昨天，显示昨天
+// * 如果在一个月内，显示xx天前
+// * 如果在一年内，显示xx月前
+// * 如果在两年内，显示xx年前
+// * 其余显示，2017-09-01
+// */
+//fun formatAgoStyleForWeChat(
+//    time: String,
+//    format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()
+//): String =
+//    parseDateString2Mills(time, format).formatAgoStyleForWeChat()
 
 /**
  * 将时间戳转换成 xx小时前 的样式（同微博）
@@ -308,10 +325,22 @@ fun Long.formatAgoStyleForWeibo(): String {
     val span = now - this
     return when {
         span <= TimeUnit.SECONDS.toMillis(1) -> "刚刚"
-        span <= TimeUnit.MINUTES.toMillis(1) -> String.format("%d秒前", span / TimeUnit.SECONDS.toMillis(1))
-        span <= TimeUnit.HOURS.toMillis(1) -> String.format("%d分钟前", span / TimeUnit.MINUTES.toMillis(1))
-        span <= TimeUnit.DAYS.toMillis(1) -> String.format("%d小时前", span / TimeUnit.HOURS.toMillis(1))
-        span >= TimeUnit.DAYS.toMillis(1) && span <= TimeUnit.DAYS.toMillis(1) * 2 -> String.format("昨天%tR", this)
+        span <= TimeUnit.MINUTES.toMillis(1) -> String.format(
+            "%d秒前",
+            span / TimeUnit.SECONDS.toMillis(1)
+        )
+        span <= TimeUnit.HOURS.toMillis(1) -> String.format(
+            "%d分钟前",
+            span / TimeUnit.MINUTES.toMillis(1)
+        )
+        span <= TimeUnit.DAYS.toMillis(1) -> String.format(
+            "%d小时前",
+            span / TimeUnit.HOURS.toMillis(1)
+        )
+        span >= TimeUnit.DAYS.toMillis(1) && span <= TimeUnit.DAYS.toMillis(1) * 2 -> String.format(
+            "昨天%tR",
+            this
+        )
         isSameYear(now) -> String.format("%tm-%td %tR", this, this, this)
         else -> String.format("%tF", this)
     }
@@ -337,12 +366,27 @@ fun Long.formatAgoStyleForWeChat(): String {
     loge("span=$span")
     return when {
         span <= TimeUnit.SECONDS.toMillis(1) -> "刚刚"
-        span <= TimeUnit.MINUTES.toMillis(1) -> String.format("%d秒前", span / TimeUnit.SECONDS.toMillis(1))
-        span <= TimeUnit.HOURS.toMillis(1) -> String.format("%d分钟前", span / TimeUnit.MINUTES.toMillis(1))
-        span <= TimeUnit.DAYS.toMillis(1) -> String.format("%d小时前", span / TimeUnit.HOURS.toMillis(1))
+        span <= TimeUnit.MINUTES.toMillis(1) -> String.format(
+            "%d秒前",
+            span / TimeUnit.SECONDS.toMillis(1)
+        )
+        span <= TimeUnit.HOURS.toMillis(1) -> String.format(
+            "%d分钟前",
+            span / TimeUnit.MINUTES.toMillis(1)
+        )
+        span <= TimeUnit.DAYS.toMillis(1) -> String.format(
+            "%d小时前",
+            span / TimeUnit.HOURS.toMillis(1)
+        )
         span >= TimeUnit.DAYS.toMillis(1) && span <= TimeUnit.DAYS.toMillis(1) * 2 -> "昨天"
-        span <= TimeUnit.DAYS.toMillis(1) * 30 -> String.format("%d天前", span / TimeUnit.DAYS.toMillis(1))
-        span <= TimeUnit.DAYS.toMillis(1) * 30 * 12 -> String.format("%d月前", span / (TimeUnit.DAYS.toMillis(1) * 30))
+        span <= TimeUnit.DAYS.toMillis(1) * 30 -> String.format(
+            "%d天前",
+            span / TimeUnit.DAYS.toMillis(1)
+        )
+        span <= TimeUnit.DAYS.toMillis(1) * 30 * 12 -> String.format(
+            "%d月前",
+            span / (TimeUnit.DAYS.toMillis(1) * 30)
+        )
         span <= TimeUnit.DAYS.toMillis(1) * 30 * 12 * 2 -> String.format(
             "%d年前",
             span / (TimeUnit.DAYS.toMillis(1) * 30 * 12)
@@ -376,7 +420,8 @@ fun Date.isSameYear(otherDate: Date): Boolean {
  * @param minCal 最小日期
  * @param maxCal 最大日期
  */
-fun Date.betweenDates(minCal: Calendar, maxCal: Calendar): Boolean = betweenDates(minCal.time, maxCal.time)
+fun Date.betweenDates(minCal: Calendar, maxCal: Calendar): Boolean =
+    betweenDates(minCal.time, maxCal.time)
 
 /**
  * 日期是否在两个日期之间
@@ -432,17 +477,16 @@ val Long.dayOfWeek: Int
         return cal.get(Calendar.DAY_OF_WEEK)
     }
 
-/**
- * 获取星期的下标
- *
- * @param time
- * @param format
- * @return 星期日 为1
- */
-fun dayOfWeek(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): Int {
-    return parseString2Date(time, format).dayOfWeek
-}
-
+///**
+// * 获取星期的下标
+// *
+// * @param time
+// * @param format
+// * @return 星期日 为1
+// */
+//fun dayOfWeek(time: String, format: DateFormat = DefaultDateFormat.DEFAULT_FORMAT.get()): Int {
+//    return parseString2Date(time, format).dayOfWeek
+//}
 
 
 fun Long.timeToString(): String {
