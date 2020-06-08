@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import com.internet.boy.androidbase.kutils.logd
 
 /**
  *@date: 2018/9/8 : 上午 10:29
@@ -16,13 +15,10 @@ import com.internet.boy.androidbase.kutils.logd
  *@email: salahayo3192@gmail.com
  **/
 
-var curFragment: androidx.fragment.app.Fragment? = null
 private var mToast: Toast? = null
 
 
 inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivity(vararg args: Pair<String, Any>) {
-
-    logd(args.toString(), "alskdaol")
 
     val intent = Intent(this, T::class.java)
     intent.putExtras(bundleOf(*args))
