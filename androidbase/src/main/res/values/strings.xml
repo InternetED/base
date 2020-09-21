@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">AndroidBase</string>
+    <string name="app_name" translatable="false">AndroidBase</string>
+    <string name="time_just_recently">剛剛</string>
+    <string name="time_minutes_ago">分前</string>
+    <string name="time_hours_ago">小時前</string>
+    <string name="time_days_ago">天前</string>
+    <string name="time_months_ago">個月前</string>
+    <string name="time_years_ago">年前</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.internet.boy.androidbase.kutils
 
 import android.annotation.SuppressLint
+import android.content.Context
+import com.internet.boy.androidbase.R
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -489,7 +491,7 @@ val Long.dayOfWeek: Int
 //}
 
 
-fun Long.timeToString(): String {
+fun Long.timeToString(context: Context): String {
 //            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
 
 
@@ -505,28 +507,28 @@ fun Long.timeToString(): String {
     val differenceTime = nowTime - this
     val year = differenceTime / ny
     if (year != 0L) {
-        return year.toString() + "年前"
+        return year.toString() + context.getString(R.string.time_years_ago)
     }
 
     val month = differenceTime / nM
     if (month != 0L) {
-        return month.toString() + "月前"
+        return month.toString() + context.getString(R.string.time_months_ago)
     }
     // 計算差多少天
     val day = differenceTime / nd
     if (day != 0L) {
-        return day.toString() + "天前"
+        return day.toString() + context.getString(R.string.time_days_ago)
     }
     // 計算差多少小時
     val hour = differenceTime % nd / nh
     if (hour != 0L) {
-        return hour.toString() + "小時前"
+        return hour.toString() + context.getString(R.string.time_hours_ago)
     }
     // 計算差多少分鐘
     val min = differenceTime % nd % nh / nm
     return if (min != 0L) {
-        min.toString() + "分前"
-    } else "剛剛"
+        min.toString() + context.getString(R.string.time_minutes_ago)
+    } else context.getString(R.string.time_just_recently)
     //            // 計算差多少秒
     //            long sec = calTT % nd % nh % nm / ns;
 
