@@ -1,4 +1,4 @@
-package com.internet.boy.androidbase.kutils;
+package com.internet.boy.androidbase.kutils
 
 import android.content.Context
 import android.os.Environment

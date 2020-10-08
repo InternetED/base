@@ -67,7 +67,7 @@ fun Context.isPermissionGranted(permission: String): Boolean {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true
     val opPermission: String? = AppOpsManagerCompat.permissionToOp(permission)
     if (!opPermission.isNullOrEmpty()) {
-        val result = AppOpsManagerCompat.noteProxyOp(this, opPermission!!, packageName)
+        val result = AppOpsManagerCompat.noteProxyOp(this, opPermission, packageName)
         if (result == AppOpsManagerCompat.MODE_IGNORED) return false
         if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) return false
     }

@@ -100,12 +100,12 @@ object ZLog {
 
         return StringBuilder().apply {
             append(TOP_BORDER)
-            appendln()
+            appendLine()
             // 添加当前线程名
             append("║ " + "Thread: " + Thread.currentThread().name)
-            appendln()
+            appendLine()
             append(MIDDLE_BORDER)
-            appendln()
+            appendLine()
             // 添加类名、方法名、行数
             append("║ ").append(element.className)
                     .append(".")
@@ -114,15 +114,15 @@ object ZLog {
                     .append(":")
                     .append(element.lineNumber)
                     .append(")")
-            appendln()
+            appendLine()
             append(MIDDLE_BORDER)
-            appendln()
+            appendLine()
             // 添加打印的日志信息
             append("$VERTICAL_DOUBLE_LINE ")
             append("$msg")
-            appendln()
+            appendLine()
             append(BOTTOM_BORDER)
-            appendln()
+            appendLine()
         }.toString()
     }
 
