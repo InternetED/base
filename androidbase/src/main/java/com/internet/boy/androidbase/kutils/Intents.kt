@@ -1,6 +1,7 @@
 package com.internet.boy.androidbase.kutils
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -25,6 +26,9 @@ fun Context.sendSMS(number: String, text: String = ""): Boolean {
     return try {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("sms:$number"))
         intent.putExtra("sms_body", text)
+        if (this is Application) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
         startActivity(intent)
         true
     } catch (e: Exception) {
@@ -42,6 +46,9 @@ fun Context.sendSMS(number: String, text: String = ""): Boolean {
 fun Context.makeCall(number: String): Boolean {
     return try {
         val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$number"))
+        if (this is Application) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
         startActivity(intent)
         true
     } catch (e: Exception) {
@@ -64,6 +71,9 @@ fun Context.email(email: String, subject: String = "", text: String = ""): Boole
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
     if (text.isNotEmpty())
         intent.putExtra(Intent.EXTRA_TEXT, text)
+    if (this is Application) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
     if (intent.resolveActivity(packageManager) != null) {
         startActivity(intent)
         return true
@@ -79,10 +89,13 @@ fun Context.email(email: String, subject: String = "", text: String = ""): Boole
  */
 fun Context.share(text: String, subject: String = ""): Boolean {
     return try {
-        val intent = Intent(android.content.Intent.ACTION_SEND)
+        val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
-        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject)
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, text)
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+        intent.putExtra(Intent.EXTRA_TEXT, text)
+        if (this is Application) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
         startActivity(Intent.createChooser(intent, null))
         true
     } catch (e: ActivityNotFoundException) {
@@ -98,12 +111,11 @@ fun Context.share(text: String, subject: String = ""): Boolean {
  */
 
 
-
 fun Context.browse(url: String, newTask: Boolean = false): Boolean {
     return try {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
-        if (newTask) {
+        if (this is Application || newTask) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         startActivity(intent)
