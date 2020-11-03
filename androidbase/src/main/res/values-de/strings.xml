@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="time_just_recently">vor einem Moment</string>
+    <string name="time_minutes_ago">vor ein paar Minuten</string>
+    <string name="time_hours_ago">vor Stunden</string>
+    <string name="time_days_ago">vor Tagen</string>
+    <string name="time_months_ago">vor wenigen Monaten</string>
+    <string name="time_years_ago">vor Jahren</string>
+</resources>

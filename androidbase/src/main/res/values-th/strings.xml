@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="time_just_recently">เมื่อครู่ก่อน</string>
+    <string name="time_minutes_ago">นาทีที่แล้ว</string>
+    <string name="time_hours_ago">ชั่วโมงที่แล้ว</string>
+    <string name="time_days_ago">วันที่ผ่านมา</string>
+    <string name="time_months_ago">หลายเดือนก่อน</string>
+    <string name="time_years_ago">ปีที่แล้ว</string>
+</resources>

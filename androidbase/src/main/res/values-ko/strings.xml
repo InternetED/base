@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="time_just_recently">얼마 전에</string>
+    <string name="time_minutes_ago">몇분 전에</string>
+    <string name="time_hours_ago">몇 시간 전</string>
+    <string name="time_days_ago">며칠 전에</string>
+    <string name="time_months_ago">몇달 전</string>
+    <string name="time_years_ago">여러 해 전에</string>
+</resources>

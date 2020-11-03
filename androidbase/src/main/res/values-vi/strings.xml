@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="time_just_recently">lúc nãy</string>
+    <string name="time_minutes_ago">một vài phút trước</string>
+    <string name="time_hours_ago">nhiều giờ trước</string>
+    <string name="time_days_ago">ngày trước</string>
+    <string name="time_months_ago">vài tháng trước</string>
+    <string name="time_years_ago">những năm trước</string>
+</resources>
